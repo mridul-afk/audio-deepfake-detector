@@ -45,7 +45,8 @@ def parse_protocol_file(protocol_path, audio_dir, output_csv_path):
                 {
                     "speaker_id": speaker_id,
                     "file_name": file_name,
-                    "audio_path": os.path.abspath(audio_path),
+                    # Create cross-platform relative path
+                    "audio_path": os.path.relpath(audio_path, PROJECT_ROOT).replace("\\", "/"),
                     "system_id": system_id,
                     "key": key,
                     "label": label,
