@@ -238,3 +238,8 @@ data/
 .streamlit/
 __pycache__/
 .ipynb_checkpoints/
+
+
+data_registry/
+
+LA/
