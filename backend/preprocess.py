@@ -34,9 +34,24 @@ HOP_LENGTH = 256              # stride between frames (75% overlap)
 N_MELS = 128                  # number of Mel filterbank bands
 
 
+from pathlib import Path
+
+
+# Project root: D:\audio-deepfake-detector
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
+
 def load_audio(audio_path: str, sample_rate: int = SAMPLE_RATE) -> np.ndarray:
     """Load an audio file as mono and resample to `sample_rate`."""
-    signal, _ = librosa.load(audio_path, sr=sample_rate, mono=True)
+    path = Path(audio_path)
+
+    # Convert relative paths (LA/ASVspoof2019...) to absolute project paths
+    if not path.is_absolute():
+        path = PROJECT_ROOT / path
+
+    if not path.exists():
+        raise FileNotFoundError(f"Audio file not found at resolved path: {path}")
+
+    signal, _ = librosa.load(str(path), sr=sample_rate, mono=True)
     return signal
 
 
