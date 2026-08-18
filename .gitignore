@@ -221,7 +221,7 @@ __marimo__/
 # Deep Learning & Large File Exclusions
 # ==========================================
 # Exclude model weights and checkpoints
-*.pth
+
 *.pt
 *.h5
 *.ckpt
